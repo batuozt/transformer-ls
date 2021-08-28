@@ -8,7 +8,8 @@ import numpy as np
 import math
 from torch.utils.checkpoint import checkpoint
 from attention import Attention
-from attention_transformer_ls import AttentionLS
+from attention_transformer_ls import AttentionLS 
+from attention_transformer_ls_sketch import AttentionSketch 
 import pdb
 
 class Embeddings(nn.Module):
@@ -59,6 +60,8 @@ class Transformer(nn.Module):
         self.norm1 = nn.LayerNorm(config.transformer_dim)
         if config.attn_type == 'lsta':
             self.mha = AttentionLS(config)
+        elif config.attn_type == 'sketch':
+            self.mha = AttentionSketch(config)
         else:
             self.mha = Attention(config)
         self.dropout1 = torch.nn.Dropout(p=config.dropout_prob)

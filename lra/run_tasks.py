@@ -115,7 +115,7 @@ print(f"num_parameter: {np.sum([np.prod(weight.size()) for weight in model.param
 model = model.cuda()
 model = nn.DataParallel(model, device_ids = device_ids)
 
-data_path = 'datasets'
+data_path = '/home/ozt/DeepSketch/Nystrom/LRA/datasets'
 ds_iter = {
     "train":enumerate(DataLoader(LRADataset(f"{data_path}/{task}.train.pickle", True), batch_size=args.batch_size, drop_last=True)),
     "dev":enumerate(DataLoader(LRADataset(f"{data_path}/{task}.dev.pickle", True), batch_size=args.batch_size, drop_last=True)),
